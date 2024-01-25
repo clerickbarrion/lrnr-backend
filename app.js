@@ -1,7 +1,9 @@
+require('dotenv').config();
+const APIKEY = process.env.APIKEY
+const OpenAI = require('openai')
+const openai = new OpenAI({apiKey: APIKEY})
 const express = require('express')
 const app = express()
-const OpenAI = require('openai')
-const openai = new OpenAI({apiKey: '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'})
 
 app.get('/api/generatequiz', async (req,res)=>{
     const topic = req.query.topic
