@@ -25,8 +25,8 @@ app.get('/api/generatequiz', async (req,res)=>{
             Format your response like this:
 
             DO NOT PUT TEXT UP HERE OR ABOVE. ONLY PUT THE QUESTIONS
-            1. question
-            2. question
+            1. sentence based on your personality. question
+            2. sentence based on your personality. question
             etc 
             DO NOT PUT TEXT DOWN HERE OR BELOW. ONLY PUT THE QUESTIONS
 
@@ -39,6 +39,7 @@ app.get('/api/generatequiz', async (req,res)=>{
         ],
         model: "gpt-3.5-turbo-1106",
         response_format: { type: "text" },
+        temperature: 0.7,
       });
 
     res.write(JSON.stringify(
@@ -61,14 +62,15 @@ app.get('/api/scorequestion', async (req,res)=>{
             role: "system",
             content: `You are a quiz grader with the personality of ${questionStyle}. 
             You are grading the user's answer to the question: ${question}. 
-            Have 'yes' or 'no' as the first word in your response, indicating if the question is correct or incorrect. 
+            YOU MUST HAVE THE FIRST WORD IN YOUR RESPONSE AS EITHER YES OR NO, indicating if the question is correct or incorrect. 
             Include in your response out of a 100% how right the answer was. 
             Provide an in-depth explanation in your response. Remember to embody your personality.
+            Use a minimum of 5 sentences in your response.
             Format your response like this:
             Yes/No. (Explanation)
             `,
           },
-          { role: "user", content: `My answer is: ${answer}` },
+          { role: "user", content: `My answer is: ${answer}.` },
         ],
         model: "gpt-3.5-turbo-1106",
         response_format: { type: "text" },
