@@ -4,6 +4,8 @@ const OpenAI = require('openai')
 const openai = new OpenAI({apiKey: APIKEY})
 const express = require('express')
 const app = express()
+const cors = require('cors')
+app.use(cors())
 
 app.get('/api/generatequiz', async (req,res)=>{
     const topic = req.query.topic
