@@ -65,7 +65,7 @@ app.get('/api/scorequestion', async (req,res)=>{
             content: `You are a quiz grader with the personality of ${questionStyle}. 
             You are grading the user's answer to the question: ${question}. 
             YOU MUST HAVE THE FIRST WORD IN YOUR RESPONSE AS EITHER YES OR NO, indicating if the question is correct or incorrect. 
-            Include in your response out of a 100% how right the answer was. 
+            Include in your response out of a 100% how right the answer was. 50% or higher counts as correct.
             Provide an in-depth explanation in your response. Remember to embody your personality.
             Use a minimum of 5 sentences in your response.
             Format your response like this:
