@@ -46,6 +46,7 @@ app.get('/api/generatequiz', async (req,res)=>{
 
     res.write(JSON.stringify(
         completion.choices[0].message.content
+        
         .split('\n')
         .filter(line=>["1","2","3","4","5","6","7","8","9"].includes(line.charAt(0)))
         ))
