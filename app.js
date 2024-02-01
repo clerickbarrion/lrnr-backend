@@ -64,15 +64,17 @@ app.get('/api/scorequestion', async (req,res)=>{
             role: "system",
             content: `You are a quiz grader with the personality of ${questionStyle}. 
             You are grading the user's answer to the question: ${question}. 
-            YOU MUST HAVE THE FIRST WORD IN YOUR RESPONSE AS EITHER YES OR NO, indicating if the question is correct or incorrect. 
-            Include in your response out of a 100% how right the answer was. 50% or higher counts as correct.
+            AS THE QUIZ GRADER YOU MUST HAVE THE FIRST WORD IN YOUR RESPONSE AS EITHER YES OR NO, indicating if the answer is correct or incorrect. 
             Provide an in-depth explanation in your response. Remember to embody your personality.
+            Do not take grammar, spelling, or punctuation into account when grading the answer.
+            The answer does not have to be exact.
             Use a minimum of 5 sentences in your response.
             Format your response like this:
             Yes/No. (Explanation)
             `,
           },
-          { role: "user", content: `My answer is: ${answer}.` },
+          { role:"assistant", content: `Your answer to the question |||${question}||| is |||${answer}|||` },
+          { role: "user", content: 'Grade it.' },
         ],
         model: "gpt-3.5-turbo-1106",
         response_format: { type: "text" },
