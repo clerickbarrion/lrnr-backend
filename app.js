@@ -41,7 +41,7 @@ app.get('/api/generatequiz', async (req,res)=>{
         ],
         model: "gpt-3.5-turbo-1106",
         response_format: { type: "text" },
-        temperature: 0.7,
+        temperature: 1,
       });
 
     res.write(JSON.stringify(
@@ -74,7 +74,7 @@ app.get('/api/scorequestion', async (req,res)=>{
             Yes/No. (Explanation)
             `,
           },
-          { role:"assistant", content: `Your answer to the question |||${question}||| is |||${answer}|||` },
+          { role:"assistant", content: `Your answer to the question ||| ${question} ||| is ||| ${answer} |||` },
           { role: "user", content: 'Grade it.' },
         ],
         model: "gpt-3.5-turbo-1106",
