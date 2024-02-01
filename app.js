@@ -43,13 +43,11 @@ app.get('/api/generatequiz', async (req,res)=>{
         response_format: { type: "text" },
         temperature: 1,
       });
-
     res.write(JSON.stringify(
         completion.choices[0].message.content
         .split('\n')
         .filter(line=>["1","2","3","4","5","6","7","8","9"].includes(line.charAt(0)))
         ))
-
     res.end()
 })
 
@@ -57,6 +55,7 @@ app.get('/api/scorequestion', async (req,res)=>{
     const question = req.query.question
     const answer = req.query.answer
     const questionStyle = req.query.questionStyle
+    const expertise = req.query.expertise
 
     const completion = await openai.chat.completions.create({
         messages: [
@@ -67,7 +66,7 @@ app.get('/api/scorequestion', async (req,res)=>{
             AS THE QUIZ GRADER YOU MUST HAVE THE FIRST WORD IN YOUR RESPONSE AS EITHER YES OR NO, indicating if the answer is correct or incorrect. 
             Provide an in-depth explanation in your response. Remember to embody your personality.
             Do not take grammar, spelling, or punctuation into account when grading the answer.
-            The answer does not have to be exact.
+            The answer does not have to be exact. Grade it ordering to the user's ${expertise} level of understanding.
             If it is 50% correct or higher than it is considered correct, so your response should start with a "Yes".
             Use a minimum of 5 sentences in your response.
             Include some emojis if you want.
