@@ -46,7 +46,6 @@ app.get('/api/generatequiz', async (req,res)=>{
 
     res.write(JSON.stringify(
         completion.choices[0].message.content
-        
         .split('\n')
         .filter(line=>["1","2","3","4","5","6","7","8","9"].includes(line.charAt(0)))
         ))
@@ -71,6 +70,7 @@ app.get('/api/scorequestion', async (req,res)=>{
             The answer does not have to be exact.
             If it is 50% correct or higher than it is considered correct, so your response should start with a "Yes".
             Use a minimum of 5 sentences in your response.
+            Include some emojis if you want.
             Format your response like this:
             Yes/No. (Explanation) It was ##% correct.
             `,
