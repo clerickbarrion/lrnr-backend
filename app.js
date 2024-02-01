@@ -39,7 +39,7 @@ app.get('/api/generatequiz', async (req,res)=>{
           },
           { role: "user", content: `Give me the quiz.` },
         ],
-        model: "gpt-3.5-turbo-1106",
+        model: "gpt-3.5-turbo-16k-0613",
         response_format: { type: "text" },
         temperature: 1,
       });
@@ -69,15 +69,16 @@ app.get('/api/scorequestion', async (req,res)=>{
             Provide an in-depth explanation in your response. Remember to embody your personality.
             Do not take grammar, spelling, or punctuation into account when grading the answer.
             The answer does not have to be exact.
+            If it is 50% correct or higher than it is considered correct, so your response should start with a "Yes".
             Use a minimum of 5 sentences in your response.
             Format your response like this:
-            Yes/No. (Explanation)
+            Yes/No. (Explanation) It was ##% correct.
             `,
           },
           { role:"assistant", content: `Your answer to the question ||| ${question} ||| is ||| ${answer} |||` },
           { role: "user", content: 'Grade it.' },
         ],
-        model: "gpt-3.5-turbo-1106",
+        model: "gpt-3.5-turbo-16k-0613",
         response_format: { type: "text" },
       });
       if (completion.choices[0].message.content.substring(0,3) === "Yes"){
