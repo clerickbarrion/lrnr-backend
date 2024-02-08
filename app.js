@@ -75,7 +75,7 @@ app.get('/api/scorequestion', async (req,res)=>{
             AS THE QUIZ GRADER YOU MUST HAVE THE FIRST WORD IN YOUR RESPONSE AS EITHER YES OR NO, indicating if the answer is correct or incorrect. 
             Provide an in-depth explanation in your response. Remember to embody your personality.
             Do not take grammar, spelling, or punctuation into account when grading the answer.
-            The answer does not have to be exact. Grade it ordering to the user's ${expertise} level of understanding.
+            The answer does not have to be exact. Grade it according to the user's ${expertise} level of understanding.
             If it is 50% correct or higher than it is considered correct, so your response should start with a "Yes".
             Use a minimum of 5 sentences in your response.
             Include some emojis if you want.
@@ -83,7 +83,7 @@ app.get('/api/scorequestion', async (req,res)=>{
             Yes/No. (Explanation) It was ##% correct.
             `,
           },
-          { role:"assistant", content: `Your answer to the question ||| ${question} ||| is ||| ${answer} |||` },
+          { role:"assistant", content: encodeURIComponent(`Your answer to the question ||| ${question} ||| is ||| ${answer} |||`) },
           { role: "user", content: 'Grade it.' },
         ],
         model: "gpt-3.5-turbo-16k-0613",
