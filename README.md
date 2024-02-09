@@ -75,7 +75,7 @@ Start the server
 | `questionNum` | `string` | Number of questions for quiz  | 
 | `questionStyle` | `string` | Voice of quizzer  |
 
-#### Example
+### Example
 * Takes in GET requests from the frontend with queries about the quiz specifications.
 * Uses the OpenAI module to generate a quiz using those specifications in the prompt.
 * Writes a response once with the generated quiz as an array.
@@ -108,7 +108,7 @@ api/generatequiz?topic=javascript&expertise=beginner&questionNum=5&questionStyle
 | `questionStyle` | `string` | Voice of quiz evaluator  |
 | `expertise` | `string` | Expertise of user  |
 
-#### Example
+### Example
 * Takes in GET requests from the front-end with queries about the question, answer, style, and expertise.
 * Uses the OpenAI module to generate a grade of the user’s answer to the question according to their expertise.
 * Writes incorrect or correct and explanation of the user’s answer.
