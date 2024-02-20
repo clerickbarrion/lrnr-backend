@@ -106,4 +106,6 @@ app.get('/api/scorequestion', async (req,res)=>{
     res.end()
 })
 //Port to listen to
-app.listen(4000)
+// app.listen(4200)
+
+module.exports = app; 
